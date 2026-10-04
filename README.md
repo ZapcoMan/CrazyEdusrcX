@@ -16,39 +16,6 @@
 
 ---
 
-## v2.0 相比 v1.0 做了什么
-
-> v2.0 是全量重构版本（开发过程中曾以 v1.1.x 迭代，正式发布统一记为 2.0.0）。
-
-### 🥳新增侧边栏可收起，拖拽功能
-
-### 😺新增语法多条，便于查找敏感信息
-
-### ✨完全修改样式，布局重构
-
-| 优化项 | v1.0 | v2.0 |
-|---|---|---|
-| 点击语法 | `await` 读存储后再跳转 | 同步构造 URL 直接跳转 |
-| 事件绑定 | 每个按钮一个 listener | 面板级事件委托，一个 listener |
-| 导航监听 | `document` 全量 `subtree` MutationObserver | 1 秒一次 href 字符串比较 + popstate |
-| 样式加载 | 向页面注入 719 行暗色 CSS（176 条 `!important`） | Shadow DOM 内一份 CSS，页面零注入 |
-| 元素主题 | 递归给每个子孙节点写 `data-theme` | 根节点一个属性 + CSS 变量 |
-| 面板定位 | 强改 Google `#rhs` / 百度 `#content_right` / Bing `#b_content` | 独立 `position:fixed` 宿主 + 可拖拽 |
-
-### 修掉的 Bug（v1.0）
-
-1. **选项页保存会丢掉 4 个新设置项** —— `saveSettings()` 整体替换对象却没带新字段；v2.0 所有控件即时保存且写入前先读最新值合并，结构上不可能再丢
-
-2. **`sensitiveHighlightEnabled` 是死设置** —— 定义了却从未被读取；现已生效并补齐 UI
-
-3. **侧边栏图标全是空白** —— 用了 Font Awesome 但没向内容脚本注入；v2.0 改为内联 SVG，零外部字体依赖
-
-4. **复制 URL 后敏感标签永久消失** —— 恢复时只写回文本；v2.0 重建完整结构
-
-5. **`site:` 域名未清洗** —— `site:"pku.edu.cn"` / `site:*.pku.edu.cn` / 带路径端口都会把脏数据拼进测绘查询；v2.0 统一 `cleanDomain()`
-
-   
-
 ## ✨ 功能
 
 ### 🎯 教育行业专用语法库（60+ 条）
@@ -79,8 +46,6 @@
 
 ### ⚡ 队列式「一键跑高危」
 
-v1.0 是 `slice(0, limit)` 直接丢掉剩余语法，且无延迟连开标签页，极易触发搜索引擎人机验证。v2.0 改为：
-
 - 全部高危语法入队，按「每批 N 个」推进
 - 标签页之间随机抖动延迟（默认 1200ms），批与批之间再额外等待
 - 实时进度条 + 「停止」按钮
@@ -96,7 +61,7 @@ v1.0 是 `slice(0, limit)` 直接丢掉剩余语法，且无延迟连开标签�
 
 敏感项自动排到列表最前，可一键导出 CSV（含 URL、等级、命中标签）。
 
-### ⭐ 其他
+### ⭐ 其他特性
 
 - 语法实时搜索（面板内按 `/` 聚焦）、分类筛选
 - **「已执行」跨会话记录**：知道这个学校跑到哪了，悬浮球上显示进度
@@ -113,7 +78,7 @@ v1.0 是 `slice(0, limit)` 直接丢掉剩余语法，且无延迟连开标签�
 ## 🚀 安装
 
 ```bash
-cd crazyedusrc-v2.0
+cd CrazyEdusrcX
 npm install          # 首次
 npm run build        # 产物在 dist/
 ```
@@ -138,7 +103,7 @@ npm run build        # 产物在 dist/
 
 ## 📸 界面预览
 
-均为 v2.0.0 实机截图（深色为面板自带的深色模式，与页面主题互不影响）。
+均为实机截图（深色为面板自带的深色模式，与页面主题互不影响）。
 
 | 工具总体布局 | 一键跑高危：挨个执行，不引发浏览器流量异常 |
 | :---: | :---: |
@@ -184,8 +149,8 @@ src/
 
 ## 📄 License
 
-[MIT](LICENSE) © dollmarker
+[MIT](LICENSE) © dollmarker & ZapcoMan
 
 ## 🙏 致谢
 
-基于开源项目 [google-hacking-assistant](https://github.com/Pa55w0rd/google-hacking-assistant) 二次开发。
+基于开源项目 [dollmarker/crazy_edusrc](https://github.com/dollmarker/crazy_edusrc/) 二次开发，感谢原作者的出色工作。
