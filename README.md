@@ -1,4 +1,6 @@
-# crazyedusrc v2.0 🎯
+# CrazyEdusrcX 🔮
+
+> **致敬声明**: 本项目基于 [dollmarker/crazy_edusrc](https://github.com/dollmarker/crazy_edusrc/) 进行二次开发。向原作者 dollmarker 表示诚挚的敬意与感谢，感谢其出色的基础工作与开源精神。本项目在原有架构上进行了功能增强与优化，命名为 **CrazyEdusrcX** 以体现对原项目的传承与扩展。
 
 **EduSRC 教育行业猎洞工具 —— 基于搜索引擎 Dork 的一键式侦察 Chrome 扩展**
 
